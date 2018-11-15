@@ -3,15 +3,15 @@ package net.emt.demo;
 public class Fact {
     private int id;
     private int queenId;
-    private String fact;
+    private String quote;
 
     public Fact() {
     }
 
-    public Fact(int id, int queenId, String fact) {
+    public Fact(int id, int queenId, String quote) {
         this.id = id;
         this.queenId = queenId;
-        this.fact = fact;
+        this.quote = quote;
     }
 
     public int getId() {
@@ -30,11 +30,11 @@ public class Fact {
         this.queenId = queenId;
     }
 
-    public String getFact() {
-        return fact;
+    public String getQuote() {
+        return quote;
     }
 
-    public void setFact(String fact) {
-        this.fact = fact;
+    public void setQuote(String quote) {
+        this.quote = quote;
     }
 }

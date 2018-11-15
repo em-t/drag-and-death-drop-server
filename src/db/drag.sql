@@ -34,17 +34,17 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: fact; Type: TABLE; Schema: public; Owner: oppilas
+-- Name: quote; Type: TABLE; Schema: public; Owner: oppilas
 --
 
-CREATE TABLE public.fact (
+CREATE TABLE public.quote (
     id integer NOT NULL,
     queen_id integer,
     quote text
 );
 
 
-ALTER TABLE public.fact OWNER TO oppilas;
+ALTER TABLE public.quote OWNER TO oppilas;
 
 --
 -- Name: fact_id_seq; Type: SEQUENCE; Schema: public; Owner: oppilas
@@ -65,7 +65,7 @@ ALTER TABLE public.fact_id_seq OWNER TO oppilas;
 -- Name: fact_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: oppilas
 --
 
-ALTER SEQUENCE public.fact_id_seq OWNED BY public.fact.id;
+ALTER SEQUENCE public.fact_id_seq OWNED BY public.quote.id;
 
 
 --
@@ -104,10 +104,10 @@ ALTER SEQUENCE public.queen_id_seq OWNED BY public.queen.id;
 
 
 --
--- Name: fact id; Type: DEFAULT; Schema: public; Owner: oppilas
+-- Name: quote id; Type: DEFAULT; Schema: public; Owner: oppilas
 --
 
-ALTER TABLE ONLY public.fact ALTER COLUMN id SET DEFAULT nextval('public.fact_id_seq'::regclass);
+ALTER TABLE ONLY public.quote ALTER COLUMN id SET DEFAULT nextval('public.fact_id_seq'::regclass);
 
 
 --
@@ -118,10 +118,10 @@ ALTER TABLE ONLY public.queen ALTER COLUMN id SET DEFAULT nextval('public.queen_
 
 
 --
--- Data for Name: fact; Type: TABLE DATA; Schema: public; Owner: oppilas
+-- Data for Name: quote; Type: TABLE DATA; Schema: public; Owner: oppilas
 --
 
-COPY public.fact (id, queen_id, quote) FROM stdin;
+COPY public.quote (id, queen_id, quote) FROM stdin;
 1	8	"HIEEEEE!"
 2	8	Your makeup is TERRIBLE!"
 3	8	"Anus-thing is possible."
@@ -215,10 +215,10 @@ SELECT pg_catalog.setval('public.queen_id_seq', 51, true);
 
 
 --
--- Name: fact fact_pkey; Type: CONSTRAINT; Schema: public; Owner: oppilas
+-- Name: quote fact_pkey; Type: CONSTRAINT; Schema: public; Owner: oppilas
 --
 
-ALTER TABLE ONLY public.fact
+ALTER TABLE ONLY public.quote
     ADD CONSTRAINT fact_pkey PRIMARY KEY (id);
 
 
@@ -231,10 +231,10 @@ ALTER TABLE ONLY public.queen
 
 
 --
--- Name: fact fact_queen_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: oppilas
+-- Name: quote fact_queen_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: oppilas
 --
 
-ALTER TABLE ONLY public.fact
+ALTER TABLE ONLY public.quote
     ADD CONSTRAINT fact_queen_id_fkey FOREIGN KEY (queen_id) REFERENCES public.queen(id);
 
 

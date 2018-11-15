@@ -9,22 +9,22 @@ import java.sql.ResultSet;
 import java.util.List;
 
 @Service
-public class DragDao {
+public class QueenDAO {
     private JdbcTemplate jdbc;
     private RowMapper<Queen> mapper = (ResultSet rs, int index) -> {
-        Queen temp = new Queen();
-        temp.setId(rs.getInt("id"));
-        temp.setName(rs.getString("name"));
+        Queen queen = new Queen();
+        queen.setId(rs.getInt("id"));
+        queen.setName(rs.getString("name"));
         String image = rs.getString("image");
         if (rs.wasNull()) {
             image = null;
         }
-        temp.setImage(image);
-        return temp;
+        queen.setImage(image);
+        return queen;
     };
 
     @Autowired
-    public DragDao(JdbcTemplate jdbc) {
+    public QueenDAO(JdbcTemplate jdbc) {
         this.jdbc = jdbc;
     }
 
@@ -34,5 +34,13 @@ public class DragDao {
         return queens;
     }
 
-
+    public Queen oneRandomQueen() {
+        // TODO muistele miten hakuehdot menee
+        String sql = "SELECT * FROM queen ORDER BY random() LIMIT 1";
+        List<Queen> queen = jdbc.query(sql, mapper);
+        if (queen.size() == 1) {
+            return queen.get(0);
+        }
+        return null;
+    }
 }
